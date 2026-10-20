@@ -1,0 +1,684 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080014">
+<title>NEON AFTER DARK</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Rajdhani:wght@400;600;700&display=swap');
+
+:root {
+  --pink: #ff2bd6;
+  --blue: #00eaff;
+  --purple: #8a2bff;
+  --bg: #080014;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: white;
+  background:
+    radial-gradient(ellipse at 20% 20%, #32104e 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 75%, #071c45 0%, transparent 40%),
+    var(--bg);
+  font-family: 'Rajdhani', sans-serif;
+}
+
+#stars {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 18px 35px;
+}
+
+nav {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  color: var(--blue);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px var(--blue);
+}
+
+.status {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #b9a8d9;
+}
+
+.dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ff9d;
+  box-shadow: 0 0 12px #00ff9d;
+  margin-right: 6px;
+}
+
+.hero {
+  width: 100%;
+  max-width: 760px;
+  text-align: center;
+  margin: auto 0;
+  padding: 70px 0 55px;
+  animation: appear 1.2s ease both;
+}
+
+.eyebrow {
+  color: var(--pink);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 5px;
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(37px, 9vw, 78px);
+  font-weight: 800;
+  line-height: 1.13;
+  letter-spacing: -2px;
+  text-shadow: 0 0 20px #ff2bd655;
+}
+
+h1 span {
+  display: block;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--blue);
+  filter: drop-shadow(0 0 13px #00eaff77);
+}
+
+.subtitle {
+  max-width: 440px;
+  margin: 24px auto 30px;
+  color: #b9b0cf;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+button {
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 5px;
+  padding: 13px 21px;
+  transition: .25s ease;
+}
+
+.primary {
+  color: #080014;
+  border: 1px solid var(--blue);
+  background: var(--blue);
+  box-shadow: 0 0 20px #00eaff55;
+}
+
+.secondary {
+  color: white;
+  background: #ffffff08;
+  border: 1px solid #ffffff40;
+}
+
+button:active {
+  transform: scale(.95);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 24px #ff2bd655;
+}
+
+.orb {
+  width: 145px;
+  height: 145px;
+  margin: 38px auto 0;
+  border-radius: 50%;
+  border: 1px solid #00eaff77;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle, #8a2bff44, #00eaff09 65%);
+  box-shadow: 0 0 40px #8a2bff22, inset 0 0 35px #00eaff15;
+  animation: float 4s ease-in-out infinite;
+}
+
+.orb-inner {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 2px solid var(--pink);
+  box-shadow: 0 0 20px var(--pink), inset 0 0 20px #ff2bd644;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+
+</style>
+  </head>
+  
+<body>
+<canvas id="stars"></canvas>
+
+<div class="page">
+
+  <nav>
+    <div class="logo">✦ NEON / AD</div>
+    <div class="status">
+      <span class="dot"></span>SYSTEM ONLINE
+    </div>
+  </nav>
+
+  <main class="hero">
+    <div class="eyebrow">✦ YOUR NIGHT STARTS HERE ✦</div>
+
+    <h1>
+      NEON
+      <span>AFTER DARK</span>
+    </h1>
+
+    <p class="subtitle">
+      Escape the ordinary. Enter your own universe.
+      Lights low. Volume up. Reality offline.
+    </p>
+
+    <div class="actions">
+      <button class="primary" id="enterBtn">
+        ENTER THE UNIVERSE ↗
+      </button>
+
+      <button class="secondary" id="musicBtn">
+        ▶ PLAY MY MUSIC
+      </button>
+    </div>
+
+    <div class="orb">
+      <div class="orb-inner">✦</div>
+    </div>
+  </main>
+
+  <audio id="music" loop preload="metadata">
+    <source src="voice.mp3" type="audio/mpeg">
+    Your browser does not support audio.
+  </audio>
+
+  <section class="cards" id="universe">
+
+    <article class="card">
+      <div class="card-icon">◈</div>
+      <h2>THE VOID</h2>
+      <p>Silence the noise. Find your own frequency.</p>
+      <button class="card-btn" data-message="VOID">
+        EXPLORE ↗
+      </button>
+    </article>
+
+    <article class="card">
+      <div class="card-icon">✧</div>
+      <h2>AFTER HOURS</h2>
+      <p>For the dreamers who come alive at night.</p>
+      <button class="card-btn" data-message="AFTER HOURS">
+        EXPLORE ↗
+      </button>
+    </article>
+
+    <article class="card">
+      <div class="card-icon">⌁</div>
+      <h2>NEON CITY</h2>
+      <p>Different energy. Different rules. Your world.</p>
+      <button class="card-btn" data-message="NEON CITY">
+        EXPLORE ↗
+      </button>
+    </article>
+
+  </section>
+
+  <section class="console">
+    <div class="console-label">SYSTEM MESSAGE</div>
+    <p id="message">
+      Welcome, stranger. Your universe awaits.
+    </p>
+    <div class="console-line">
+      <span class="dot"></span>
+      CONNECTION SECURE
+    </div>
+  </section>
+
+  <footer>
+    <div>NEON AFTER DARK <span>© 2026</span></div>
+    <p>BUILT FOR THE ONES WHO NEVER FIT THE ORDINARY.</p>
+  </footer>
+
+</div>
+        </body>
+        
+/* ===== NEON AFTER DARK: VISUAL EFFECTS ===== */
+
+.cards {
+  width: 100%;
+  max-width: 900px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0 auto 38px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 19px;
+  border: 1px solid #ffffff18;
+  border-radius: 12px;
+  background: linear-gradient(
+    145deg,
+    #ffffff0c,
+    #8a2bff09
+  );
+  backdrop-filter: blur(12px);
+  transition: transform .3s, border-color .3s,
+              box-shadow .3s;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(
+    90deg, transparent, var(--blue), transparent
+  );
+  transition: left .6s ease;
+}
+
+.card:hover::before {
+  left: 120%;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+  border-color: #00eaff77;
+  box-shadow: 0 10px 35px #00eaff12;
+}
+
+.card-icon {
+  color: var(--pink);
+  font-size: 29px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px var(--pink);
+}
+
+.card h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  color: var(--blue);
+}
+
+.card p {
+  color: #b9b0cf;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 19px;
+}
+
+.card-btn {
+  padding: 8px 0;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--pink);
+  border-radius: 0;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 9px;
+}
+
+.console {
+  width: 100%;
+  max-width: 900px;
+  padding: 22px;
+  margin-bottom: 40px;
+  border: 1px solid #8a2bff44;
+  border-radius: 10px;
+  background: #120722aa;
+  box-shadow: inset 0 0 30px #8a2bff08;
+}
+
+.console-label {
+  color: var(--pink);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 13px;
+}
+
+#message {
+  color: white;
+  font-size: 18px;
+  min-height: 27px;
+  transition: opacity .2s;
+}
+
+.console-line {
+  margin-top: 17px;
+  padding-top: 13px;
+  border-top: 1px solid #ffffff15;
+  color: #8e81a9;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+footer {
+  width: 100%;
+  max-width: 900px;
+  border-top: 1px solid #ffffff18;
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  color: #9b8db4;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+footer span {
+  color: var(--blue);
+}
+
+footer p {
+  font-size: 9px;
+  text-align: right;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-13px); }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 12px #ff2bd633; }
+  50% { box-shadow: 0 0 32px #ff2bd688; }
+}
+
+.orb-inner {
+  animation: pulse 3s infinite;
+}
+
+@media (max-width: 650px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 22px;
+  }
+
+  .hero {
+    padding: 65px 0 42px;
+  }
+
+  .logo {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  .status {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  footer p {
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .console {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+  
+<script>
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
+const enterBtn = document.getElementById("enterBtn");
+const message = document.getElementById("message");
+const universe = document.getElementById("universe");
+
+/* ===== MUSIC PLAYER ===== */
+
+let playing = false;
+
+musicBtn.addEventListener("click", async () => {
+  if (!playing) {
+    try {
+      await music.play();
+      playing = true;
+      musicBtn.textContent = "Ⅱ PAUSE MY MUSIC";
+      showMessage("Your soundtrack is now playing. Enjoy the night. ✦");
+    } catch (error) {
+      showMessage("Music couldn't start. Check that voice.mp3 is uploaded beside index.html.");
+      musicBtn.textContent = "↻ TRY MUSIC AGAIN";
+    }
+  } else {
+    music.pause();
+    playing = false;
+    musicBtn.textContent = "▶ PLAY MY MUSIC";
+    showMessage("Soundtrack paused. The night is yours.");
+  }
+});
+
+music.addEventListener("ended", () => {
+  playing = false;
+  musicBtn.textContent = "▶ PLAY MY MUSIC";
+});
+
+music.addEventListener("pause", () => {
+  playing = false;
+  musicBtn.textContent = "▶ PLAY MY MUSIC";
+});
+
+music.addEventListener("play", () => {
+  playing = true;
+  musicBtn.textContent = "Ⅱ PAUSE MY MUSIC";
+});
+
+/* ===== INTERACTIVE CONSOLE ===== */
+
+function showMessage(text) {
+  message.style.opacity = "0";
+
+  setTimeout(() => {
+    message.textContent = text;
+    message.style.opacity = "1";
+  }, 180);
+}
+
+enterBtn.addEventListener("click", () => {
+  showMessage("ACCESS GRANTED. WELCOME TO YOUR UNIVERSE. ✦");
+  universe.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+  beep(660, 0.12);
+});
+
+document.querySelectorAll(".card-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const zone = button.dataset.message;
+
+    const messages = {
+      "VOID": "THE VOID: Breathe. Reset. Become limitless. ◈",
+      "AFTER HOURS": "AFTER HOURS: The world sleeps. You rise. ✧",
+      "NEON CITY": "NEON CITY: Your world. Your rules. Your energy. ⌁"
+    };
+
+    showMessage(messages[zone] || "WELCOME TO THE UNKNOWN.");
+    beep(880, 0.10);
+  });
+});
+
+/* ===== SYNTHETIC SOUND EFFECTS ===== */
+
+let audioContext;
+
+function beep(frequency = 660, duration = 0.12) {
+  try {
+    audioContext ||= new (
+      window.AudioContext || window.webkitAudioContext
+    )();
+
+    if (audioContext.state === "suspended") {
+      audioContext.resume();
+    }
+
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+
+    gain.gain.setValueAtTime(0.045, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(
+      0.001,
+      audioContext.currentTime + duration
+    );
+
+    oscillator.connect(gain);
+    gain.connect(audioContext.destination);
+
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + duration);
+  } catch (error) {
+    // The website still works if sound effects are unavailable.
+  }
+}
+
+/* ===== ANIMATED STARFIELD ===== */
+
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+let stars = [];
+let animationFrame;
+
+function resizeCanvas() {
+  const ratio = Math.min(window.devicePixelRatio || 1, 2);
+
+  canvas.width = Math.floor(window.innerWidth * ratio);
+  canvas.height = Math.floor(window.innerHeight * ratio);
+
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+
+  ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+  stars = Array.from({ length: Math.min(
+    100,
+    Math.floor(window.innerWidth / 4)
+  ) }, () => ({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    radius: Math.random() * 1.5 + 0.3,
+    speed: Math.random() * 0.35 + 0.08,
+    alpha: Math.random() * 0.7 + 0.2
+  }));
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+  stars.forEach(star => {
+    star.y -= star.speed;
+
+    if (star.y < 0) {
+      star.y = window.innerHeight;
+      star.x = Math.random() * window.innerWidth;
+    }
+
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+
+    ctx.fillStyle = `rgba(0,234,255,${star.alpha})`;
+    ctx.shadowBlur = 8;
+    ctx.shadowColor = "#00eaff";
+    ctx.fill();
+  });
+
+  ctx.shadowBlur = 0;
+  animationFrame = requestAnimationFrame(drawStars);
+}
+
+window.addEventListener("resize", resizeCanvas);
+
+resizeCanvas();
+drawStars();
+
+/* ===== FINISH ===== */
+
+showMessage("Welcome, stranger. Your universe awaits.");
+</script>
+</html>
